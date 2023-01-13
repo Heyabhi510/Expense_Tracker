@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: aqua;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <title>Add Category</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" style="color: white;" href="Dashboard.html">Expense Tracker</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <form id="cat-form">
+    <div>
+      <b><Label>Category Name</Label></b>
+      <input type="text" id="cat-name" required><br /><br /><br />
+
+      <b><Label>Limit</Label></b>
+      <input type="number" id="cat-limit" min="0" style="margin-left: 80px;" required><br />
+
+      <a href="Dashboard.html"><input type="button" value="back" style="margin:55px; border-radius:20px;"></a>
+      <button type="button" style="border-radius:25px" id="cat-sub">Submit</button>
+    </div>
+  </form>
+  <script>
+    let url = "http://localhost:14912/api";
+    //Adding new Category
+    var CatForm = document.getElementById('cat-sub');
+    CatForm.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      var name = document.getElementById('cat-name').value
+      var limit = document.getElementById('cat-limit').value
+
+      const formData = { name, limit };
+      fetch(url + "/Category",
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(res => {
+          window.location = "Dashboard.html"
+        })
+        .then(json => console.log(json))
+        .catch((err) => {
+          console.log(err);
+        })
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+#cat-form,#exp-form{
+    background-color: aqua;
+}
+.body{
+    padding-top: 30px;
+    padding-left: 35px;
+}
+
+.table{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.category{
+    padding-left: -100px;
+}
+
+.actions{
+    display: table-cell;
+}
+
+.fa-solid{
+    padding-inline-start: 8px;
+}
+
+#cat-form, #exp-form{
+    padding-top: 100px;
+    padding-left: 150px;
+}
+
+.amt-info{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+}
